@@ -7,10 +7,11 @@
     <style>
         /* Color Palette: White and Light Green */
         :root {
-            --primary-green: #81c784; /* Light green */
-            --light-green-bg: #e8f5e9; /* Very light green for subtle backgrounds */
+            --primary-green: #81c784; 
+            --light-green-bg: #e8f5e9; 
             --text-dark: #333333;
             --white: #ffffff;
+            --error-red: #d32f2f;
         }
 
         body {
@@ -54,6 +55,7 @@
 
         .form-group {
             margin-bottom: 20px;
+            position: relative;
         }
 
         .form-row {
@@ -93,6 +95,42 @@
             outline: none;
             border-color: var(--primary-green);
             box-shadow: 0 0 0 2px rgba(129, 199, 132, 0.2);
+        }
+
+        /* Checkbox styling */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary-green);
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-weight: normal;
+        }
+
+        .checkbox-group a {
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        /* Error message styling */
+        .error-message {
+            color: var(--error-red);
+            font-size: 12px;
+            margin-top: 5px;
+            display: none; /* Hidden by default */
         }
 
         button[type="submit"] {
@@ -138,7 +176,7 @@
             <p>Create your account to book and manage appointments</p>
         </div>
 
-        <form action="/submit-registration" method="POST">
+        <form id="signupForm" action="/submit-registration" method="POST">
             <!-- Name -->
             <div class="form-group">
                 <label for="fullName">Full Name</label>
@@ -153,7 +191,8 @@
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
-                    <input type="number" id="age" name="age" placeholder="e.g. 34" min="0" max="120" required>
+                    <!-- Made read-only since JS will calculate it -->
+                    <input type="number" id="age" name="age" placeholder="Auto-calculated" readonly required>
                 </div>
             </div>
 
@@ -204,6 +243,12 @@
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                <div class="error-message" id="passwordError">Passwords do not match!</div>
+            </div>
+            <!-- Terms and Conditions -->
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
             </div>
 
             <!-- Submit -->
@@ -215,6 +260,59 @@
             Already have an account? <a href="/login.html">Log in here</a>
         </div>
     </div>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // 1. Auto-calculate Age based on Date of Birth
+        const dobInput = document.getElementById('dob');
+        const ageInput = document.getElementById('age');
+
+        dobInput.addEventListener('change', function() {
+            if(this.value) {
+                const dob = new Date(this.value);
+                const today = new Date();
+                let age = today.getFullYear() - dob.getFullYear();
+                const m = today.getMonth() - dob.getMonth();
+                
+                // Subtract a year if the birthday hasn't happened yet this year
+                if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                    age--;
+                }
+                
+                // Ensure age is not negative
+                ageInput.value = age >= 0 ? age : 0;
+            } else {
+                ageInput.value = '';
+            }
+        });
+
+        // 2. Validate Passwords Match on Form Submit
+        const form = document.getElementById('signupForm');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const passwordError = document.getElementById('passwordError');
+
+        form.addEventListener('submit', function(event) {
+            if (password.value !== confirmPassword.value) {
+                // Prevent the form from submitting
+                event.preventDefault(); 
+                
+                // Show error state
+                passwordError.style.display = 'block';
+                confirmPassword.style.borderColor = 'var(--error-red)';
+            } else {
+                // Remove error state if they fixed it
+                passwordError.style.display = 'none';
+                confirmPassword.style.borderColor = '#ddd';
+            }
+        });
+
+        // Optional: Remove error message as soon as the user starts typing again
+        confirmPassword.addEventListener('input', function() {
+            passwordError.style.display = 'none';
+            this.style.borderColor = 'var(--primary-green)';
+        });
+    </script>
 
 </body>
 </html>
