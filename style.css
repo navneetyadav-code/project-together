@@ -129,20 +129,19 @@ body {
 /* ================= BOOK BUTTON ================= */
 
 .book-btn {
-    margin-top: 35px;
+    display: inline-block;
 
+    margin-top: 35px;
     padding: 15px 30px;
 
-    border: none;
+    background-color: #E8F5F1;
+    color: #185C4A;
 
     border-radius: 8px;
 
-    background-color: #E8F5F1;
-
-    color: #185C4A;
+    text-decoration: none;
 
     font-size: 17px;
-
     font-weight: 600;
 
     cursor: pointer;
@@ -150,12 +149,8 @@ body {
     transition: 0.3s;
 }
 
-
-/* Button hover */
-
 .book-btn:hover {
     background-color: #2E7D6B;
-
     color: #FFFFFF;
 
     transform: translateY(-2px);
