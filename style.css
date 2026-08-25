@@ -1,226 +1,397 @@
-/* ================= GENERAL ================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-
-    background-color: #F7FAF9;
-
-    color: #18312B;
-}
-
-
-/* ================= NAVBAR ================= */
-
-.navbar {
-    height: 85px;
-
-    background-color: #FFFFFF;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 8%;
-
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-
-/* WEBSITE NAME */
-
-.logo {
-    font-size: 35px;
-
-    font-weight: 700;
-
-    color: #2E7D6B;
-
-    letter-spacing: 1px;
-}
-
-
-/* NAVIGATION */
-
-.nav-links {
-    display: flex;
-
-    gap: 45px;
-}
-
-.nav-links a {
-    text-decoration: none;
-
-    color: #18312B;
-
-    font-size: 16px;
-
-    font-weight: 500;
-
-    transition: 0.3s;
-}
-
-
-/* Hover effect */
-
-.nav-links a:hover {
-    color: #2E7D6B;
-}
-
-
-/* ================= HERO ================= */
-
-.hero {
-    min-height: calc(100vh - 85px);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 60px 8%;
-}
-
-
-/* ================= LEFT CONTENT ================= */
-
-.hero-content {
-    width: 50%;
-}
-
-
-.hero-content h1 {
-    font-size: 55px;
-
-    line-height: 1.15;
-
-    font-weight: 700;
-
-    color: #18312B;
-}
-
-
-/* Green part of heading */
-
-.hero-content h1 span {
-    color: #2E7D6B;
-}
-
-
-.hero-content p {
-    margin-top: 25px;
-
-    font-size: 18px;
-
-    line-height: 1.6;
-
-    color: #61716C;
-
-    max-width: 500px;
-}
-
-
-/* ================= BOOK BUTTON ================= */
-
-.book-btn {
-    display: inline-block;
-
-    margin-top: 35px;
-    padding: 15px 30px;
-
-    background-color: #E8F5F1;
-    color: #185C4A;
-
-    border-radius: 8px;
-
-    text-decoration: none;
-
-    font-size: 17px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.book-btn:hover {
-    background-color: #2E7D6B;
-    color: #FFFFFF;
-
-    transform: translateY(-2px);
-}
-
-
-/* ================= RIGHT IMAGE ================= */
-
-.hero-image {
-    width: 45%;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-}
-
-
-.hero-image img {
-    width: 100%;
-
-    max-width: 500px;
-
-    height: auto;
-
-    object-fit: contain;
-}
-
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 768px) {
-
-    .navbar {
-        padding: 0 5%;
-    }
-
-    .nav-links {
-        gap: 15px;
-    }
-
-    .nav-links a {
-        font-size: 13px;
-    }
-
-    .hero {
-        flex-direction: column;
-
-        text-align: center;
-
-        padding: 50px 5%;
-    }
-
-    .hero-content {
-        width: 100%;
-    }
-
-    .hero-content h1 {
-        font-size: 40px;
-    }
-
-    .hero-content p {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .hero-image {
-        width: 100%;
-
-        margin-top: 40px;
-    }
-}
+        /* ================= GENERAL ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #F7FAF9;
+            color: #18312B;
+            overflow-x: hidden;
+        }
+
+        /* Common Section Layout */
+        .section-container {
+            padding: 80px 8%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            color: #18312B;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: #61716C;
+            font-size: 17px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ================= NAVBAR ================= */
+        .navbar {
+            height: 85px;
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 35px;
+            font-weight: 700;
+            color: #2E7D6B;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 45px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #18312B;
+            font-size: 16px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2E7D6B;
+        }
+
+        /* ================= HERO ================= */
+        .hero {
+            min-height: calc(100vh - 85px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 8%;
+        }
+
+        .hero-content {
+            width: 50%;
+        }
+
+        .hero-content h1 {
+            font-size: 55px;
+            line-height: 1.15;
+            font-weight: 700;
+            color: #18312B;
+        }
+
+        .hero-content h1 span {
+            color: #2E7D6B;
+        }
+
+        .hero-content p {
+            margin-top: 25px;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #61716C;
+            max-width: 500px;
+        }
+
+        .book-btn {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 15px 30px;
+            background-color: #E8F5F1;
+            color: #185C4A;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            outline: none;
+        }
+
+        .book-btn:hover {
+            background-color: #2E7D6B;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            width: 45%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(46, 125, 107, 0.15);
+        }
+
+        /* ================= SPECIALTIES ================= */
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .specialty-card {
+            background: #FFFFFF;
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(46, 125, 107, 0.1);
+        }
+
+        .specialty-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            object-fit: cover;
+            background-color: #E8F5F1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .specialty-img img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .specialty-card h3 {
+            font-size: 20px;
+            color: #18312B;
+            margin-bottom: 10px;
+        }
+
+        .specialty-card p {
+            font-size: 15px;
+            color: #61716C;
+        }
+
+        /* ================= BENEFITS ================= */
+        .benefits-section {
+            background-color: #FFFFFF;
+        }
+
+        .benefits-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .benefits-image {
+            width: 50%;
+        }
+
+        .benefits-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .benefits-content {
+            width: 50%;
+        }
+
+        .benefits-content h2 {
+            font-size: 36px;
+            color: #18312B;
+            margin-bottom: 20px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            gap: 15px;
+        }
+
+        .benefit-icon {
+            background-color: #E8F5F1;
+            color: #2E7D6B;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+
+        .benefit-text h4 {
+            color: #18312B;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .benefit-text p {
+            color: #61716C;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        /* ================= CONTACT ================= */
+        .contact-container {
+            display: flex;
+            background: #FFFFFF;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .contact-info {
+            width: 40%;
+            background-color: #2E7D6B;
+            color: #FFFFFF;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info p {
+            opacity: 0.9;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .info-detail {
+            margin-bottom: 20px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-form {
+            width: 60%;
+            padding: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #18312B;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #E8F5F1;
+            background-color: #F7FAF9;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 15px;
+            color: #18312B;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #2E7D6B;
+            background-color: #FFFFFF;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #18312B;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 25px 8%;
+            font-size: 14px;
+        }
+
+        /* ================= MOBILE RESPONSIVENESS ================= */
+        @media (max-width: 900px) {
+            .benefits-wrapper {
+                flex-direction: column;
+            }
+            .benefits-image, .benefits-content {
+                width: 100%;
+            }
+            .contact-container {
+                flex-direction: column;
+            }
+            .contact-info, .contact-form {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 5%;
+            }
+            .nav-links {
+                display: none; /* In a real app, you'd add a hamburger menu here */
+            }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 50px 5%;
+            }
+            .hero-content {
+                width: 100%;
+            }
+            .hero-content h1 {
+                font-size: 40px;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-image {
+                width: 100%;
+                margin-top: 40px;
+            }
+            .section-container {
+                padding: 60px 5%;
+            }
+        }
+    
