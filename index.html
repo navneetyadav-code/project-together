@@ -183,5 +183,49 @@
         <p>&copy; 2026 Vedji Healthcare. All rights reserved.</p>
     </footer>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Doctor Website</title>
+</head>
+<body>
+
+    <!-- Aapki website ka jo bhi purana content ya design hai, wo yahan rahega -->
+    <h1>Welcome to My Doctor Website</h1>
+    <p>Yahan aapka homepage ka content hai...</p>
+
+
+    <!-- ================================================= -->
+    <!-- ⬇️ YAHAN SE AAPKO APNA NAYA CODE PASTE KARNA HAI ⬇️ -->
+    <!-- ================================================= -->
+
+    <div id="chat-widget-container"></div>
+
+    <script>
+        fetch('chat.html')
+            .then(response => response.text())
+            .then(data => {
+                const container = document.getElementById('chat-widget-container');
+                container.innerHTML = data;
+
+                const scripts = container.getElementsByTagName("script");
+                for (let i = 0; i < scripts.length; i++) {
+                    const newScript = document.createElement("script");
+                    newScript.text = scripts[i].text;
+                    document.body.appendChild(newScript);
+                }
+            })
+            .catch(error => console.error('Error loading chat widget:', error));
+    </script>
+
+    <!-- ================================================= -->
+    <!-- ⬆️ YAHAN TAK PASTE KRNA THA ⬆️ -->
+    <!-- ================================================= -->
+
+
+</body> <!-- Yeh wala tag sabse last me hona chahiye -->
+</html>
 </body>
 </html>
