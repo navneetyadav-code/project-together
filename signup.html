@@ -136,7 +136,7 @@
         <div id="responseMessage"></div>
 
         <div class="login-link">
-            Already have an account? <a href="login.php">Log in here</a>
+            Already have an account? <a href="login.html">Log in here</a>
         </div>
     </div>
 
@@ -189,7 +189,7 @@
 
             try {
                 const formData = new FormData(form);
-                const response = await fetch('api.php?action=signup', {
+                const response = await fetch('backend/api.php?action=signup', {
                     method: 'POST',
                     body: formData
                 });
@@ -197,7 +197,7 @@
 
                 if (result.status === 'success') {
                     responseDiv.innerHTML = `<span class="text-success">${result.message}</span>`;
-                    setTimeout(() => window.location.href = 'login.php', 2000);
+                    setTimeout(() => window.location.href = 'login.html', 2000);
                 } else {
                     responseDiv.innerHTML = `<span class="text-danger">${result.message}</span>`;
                     btn.disabled = false;

@@ -2,7 +2,7 @@
 // api.php - Handles real-time AJAX requests for Login and Signup
 session_start();
 header('Content-Type: application/json');
-require_once 'db.php';
+require_once 'config.php';
 
 $action = $_GET['action'] ?? '';
 
