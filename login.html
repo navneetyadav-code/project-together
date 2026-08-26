@@ -4,10 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Vedji Health Partner</title>
-    <!-- We use the dedicated auth-style.css to ensure index.html remains unaffected -->
-    <link rel="stylesheet" href="auth-style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        :root {
+            --auth-primary: #2E7D6B; --auth-primary-hover: #185C4A;
+            --auth-bg: #F7FAF9; --auth-text: #18312B; --auth-text-light: #61716C;
+            --auth-border: #E0E7E5; --auth-error: #E63946;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background-color: var(--auth-bg); color: var(--auth-text); overflow-x: hidden; height: 100vh; }
+        .auth-wrapper { display: flex; width: 100vw; height: 100vh; }
+        
+        .auth-sidebar { width: 45%; position: relative; background-color: #000; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #FFF; }
+        .auth-sidebar::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(24, 49, 43, 0.4), rgba(46, 125, 107, 0.8)); z-index: 2; }
+        .auth-slideshow { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+        .auth-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: authCrossfade 15s infinite ease-in-out; }
+        .auth-slide:nth-child(1) { animation-delay: 0s; } .auth-slide:nth-child(2) { animation-delay: 5s; } .auth-slide:nth-child(3) { animation-delay: 10s; }
+        @keyframes authCrossfade { 0%, 25% { opacity: 1; transform: scale(1.02); } 33.33%, 91.66% { opacity: 0; transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
+        
+        .auth-sidebar-content { position: relative; z-index: 3; text-align: center; padding: 40px; max-width: 80%; }
+        .auth-sidebar-content h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; }
+        
+        .auth-main { width: 55%; display: flex; justify-content: center; align-items: center; padding: 40px; }
+        .auth-form-container { width: 100%; max-width: 500px; background: #FFFFFF; padding: 40px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04); }
+        .auth-logo { font-size: 1.8rem; font-weight: 700; color: var(--auth-primary); text-decoration: none; display: inline-block; margin-bottom: 30px; }
+        .auth-header h1 { font-size: 1.8rem; margin-bottom: 8px; }
+        .auth-header p { color: var(--auth-text-light); margin-bottom: 30px; }
+        
+        .auth-input-group { position: relative; margin-bottom: 20px; }
+        .auth-input { width: 100%; padding: 22px 16px 8px; border: 1px solid var(--auth-border); border-radius: 12px; font-size: 16px; background-color: var(--auth-bg); transition: 0.3s; }
+        .auth-input:focus { outline: none; border-color: var(--auth-primary); background-color: #FFF; box-shadow: 0 0 0 4px rgba(46, 125, 107, 0.1); }
+        .auth-label { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 1rem; color: var(--auth-text-light); pointer-events: none; transition: 0.2s ease all; }
+        .auth-input:focus ~ .auth-label, .auth-input:not(:placeholder-shown) ~ .auth-label { top: 14px; font-size: 0.75rem; font-weight: 600; color: var(--auth-primary); }
+        
+        .auth-role-toggle { display: flex; gap: 20px; margin-bottom: 25px; padding: 5px; background: var(--auth-bg); border-radius: 10px; }
+        .auth-role-toggle label { flex: 1; text-align: center; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--auth-text-light); transition: 0.3s; }
+        .auth-role-toggle input { display: none; }
+        .auth-role-toggle input:checked + span { color: var(--auth-primary); }
+        .auth-role-toggle label:has(input:checked) { background: #FFFFFF; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        
+        .auth-btn { width: 100%; padding: 16px; background-color: var(--auth-primary); color: #FFF; border: none; border-radius: 12px; font-size: 1.05rem; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .auth-btn:hover:not(:disabled) { background-color: var(--auth-primary-hover); }
+        .auth-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+        .auth-links { display: flex; justify-content: space-between; margin-top: 25px; font-size: 0.9rem; }
+        .auth-links a { color: var(--auth-primary); text-decoration: none; font-weight: 600; }
+        
+        #responseMessage { text-align: center; margin-top: 15px; font-size: 14px; font-weight: bold; }
+        .text-success { color: var(--auth-primary); }
+        .text-danger { color: var(--auth-error); }
+
+        @media (max-width: 900px) {
+            .auth-wrapper { flex-direction: column; }
+            .auth-sidebar { width: 100%; height: 30vh; }
+            .auth-main { width: 100%; height: 70vh; }
+        }
+    </style>
 </head>
-<body class="auth-body">
+<body>
 
     <div class="auth-wrapper">
         <aside class="auth-sidebar">
@@ -16,7 +69,6 @@
                 <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1000" alt="Doctor" class="auth-slide">
                 <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000" alt="Health" class="auth-slide">
             </div>
-            
             <div class="auth-sidebar-content">
                 <h2>Welcome Back</h2>
                 <p>Log in to manage your appointments, view medical history, and connect with your healthcare professionals instantly.</p>
@@ -25,49 +77,78 @@
 
         <main class="auth-main">
             <div class="auth-form-container">
-                <a href="index.html" class="auth-logo">Vedji.</a>
-                
+                <a href="#" class="auth-logo">Vedji.</a>
                 <div class="auth-header">
                     <h1>Log In to Your Account</h1>
                     <p>Enter your details to securely access your portal.</p>
                 </div>
 
-                <form onsubmit="event.preventDefault(); document.getElementById('loginBtn').innerText = 'Authenticating...'; setTimeout(() => window.location.href='index.html', 1500);">
-                    
-                    <!-- Role Selector -->
+                <form id="loginForm">
                     <div class="auth-role-toggle">
-                        <label>
-                            <input type="radio" name="user_role" value="patient" checked>
-                            <span>Patient</span>
-                        </label>
-                        <label>
-                            <input type="radio" name="user_role" value="doctor">
-                            <span>Doctor</span>
-                        </label>
+                        <label><input type="radio" name="user_role" value="patient" checked><span>Patient</span></label>
+                        <label><input type="radio" name="user_role" value="doctor"><span>Doctor</span></label>
                     </div>
 
-                    <!-- Floating Label Input: Email -->
                     <div class="auth-input-group">
-                        <input type="text" id="contact" class="auth-input" placeholder=" " required>
+                        <input type="text" id="contact" name="contact" class="auth-input" placeholder=" " required>
                         <label for="contact" class="auth-label">Email or Mobile Number</label>
                     </div>
 
-                    <!-- Floating Label Input: Password -->
                     <div class="auth-input-group">
-                        <input type="password" id="password" class="auth-input" placeholder=" " required>
+                        <input type="password" id="password" name="password" class="auth-input" placeholder=" " required>
                         <label for="password" class="auth-label">Password</label>
                     </div>
 
                     <button type="submit" id="loginBtn" class="auth-btn">Sign In</button>
                 </form>
 
+                <div id="responseMessage"></div>
+
                 <div class="auth-links">
-                    <span>Don't have an account? <a href="signup.html">Create one</a></span> <br>
+                    <span>Don't have an account? <a href="signup.php">Create one</a></span>
                     <a href="#">Forgot Password?</a>
                 </div>
             </div>
         </main>
     </div>
 
+    <script>
+        const form = document.getElementById('loginForm');
+        
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault(); 
+            
+            const btn = document.getElementById('loginBtn');
+            const responseDiv = document.getElementById('responseMessage');
+            
+            btn.disabled = true;
+            btn.innerText = 'Authenticating...';
+            responseDiv.innerHTML = '';
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch('api.php?action=login', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    responseDiv.innerHTML = `<span class="text-success">${result.message}</span>`;
+                    // Redirect to dashboard (change index.php to your actual dashboard route)
+                    setTimeout(() => window.location.href = 'index.php', 1500); 
+                } else {
+                    responseDiv.innerHTML = `<span class="text-danger">${result.message}</span>`;
+                    btn.disabled = false;
+                    btn.innerText = 'Sign In';
+                }
+            } catch (error) {
+                responseDiv.innerHTML = `<span class="text-danger">A network error occurred.</span>`;
+                btn.disabled = false;
+                btn.innerText = 'Sign In';
+            }
+        });
+    </script>
 </body>
 </html>

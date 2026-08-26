@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - MedBook</title>
     <style>
-        /* Color Palette: White and Light Green */
         :root {
             --primary-green: #81c784; 
             --light-green-bg: #e8f5e9; 
@@ -13,7 +12,6 @@
             --white: #ffffff;
             --error-red: #d32f2f;
         }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--light-green-bg);
@@ -25,7 +23,6 @@
             margin: 0;
             padding: 20px;
         }
-
         .signup-container {
             background-color: var(--white);
             padding: 40px;
@@ -35,168 +32,34 @@
             max-width: 500px;
             border-top: 5px solid var(--primary-green);
         }
-
-        .signup-header {
-            text-align: center;
-            margin-bottom: 30px;
+        .signup-header { text-align: center; margin-bottom: 30px; }
+        .signup-header h2 { margin: 0; color: var(--primary-green); font-size: 28px; }
+        .signup-header p { color: #666; font-size: 14px; margin-top: 5px; }
+        .form-group { margin-bottom: 20px; position: relative; }
+        .form-row { display: flex; gap: 15px; }
+        .form-row .form-group { flex: 1; }
+        label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 14px; }
+        input[type="text"], input[type="number"], input[type="date"], input[type="tel"], 
+        input[type="email"], input[type="password"], select {
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 14px;
         }
-
-        .signup-header h2 {
-            margin: 0;
-            color: var(--primary-green);
-            font-size: 28px;
-        }
-
-        .signup-header p {
-            color: #666;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 15px;
-        }
-
-        .form-row .form-group {
-            flex: 1;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        input[type="date"],
-        input[type="tel"],
-        input[type="email"],
-        input[type="password"],
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 14px;
-            transition: border-color 0.3s ease;
-        }
-
-        input:focus,
-        select:focus {
-            outline: none;
-            border-color: var(--primary-green);
-            box-shadow: 0 0 0 2px rgba(129, 199, 132, 0.2);
-        }
-
-        /* Password Toggle Styling */
-        .password-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        
-        .password-container input {
-            padding-right: 60px; /* Gives space so text doesn't hide behind the button */
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 12px;
-            background: none;
-            border: none;
-            color: var(--primary-green);
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 12px;
-            padding: 0;
-        }
-
-        .toggle-password:hover {
-            color: #66bb6a;
-        }
-
-        /* Checkbox styling */
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            accent-color: var(--primary-green);
-        }
-
-        .checkbox-group label {
-            margin-bottom: 0;
-            font-weight: normal;
-        }
-
-        .checkbox-group a {
-            color: var(--primary-green);
-            text-decoration: none;
-        }
-
-        .checkbox-group a:hover {
-            text-decoration: underline;
-        }
-
-        /* Error message styling */
-        .error-message {
-            color: var(--error-red);
-            font-size: 12px;
-            margin-top: 5px;
-            display: none;
-        }
-
+        input:focus, select:focus { outline: none; border-color: var(--primary-green); }
+        .password-container { position: relative; display: flex; align-items: center; }
+        .password-container input { padding-right: 60px; }
+        .toggle-password { position: absolute; right: 12px; background: none; border: none; color: var(--primary-green); cursor: pointer; font-weight: bold; font-size: 12px; padding: 0; }
+        .checkbox-group { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .checkbox-group input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--primary-green); }
+        .error-message { color: var(--error-red); font-size: 12px; margin-top: 5px; display: none; }
         button[type="submit"] {
-            width: 100%;
-            padding: 14px;
-            background-color: var(--primary-green);
-            color: var(--white);
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
+            width: 100%; padding: 14px; background-color: var(--primary-green); color: var(--white);
+            border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px;
         }
-
-        button[type="submit"]:hover:not(:disabled) {
-            background-color: #66bb6a;
-        }
-        
-        button[type="submit"]:disabled {
-            opacity: 0.7;
-        }
-
-        .login-link {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-
-        .login-link a {
-            color: var(--primary-green);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .login-link a:hover {
-            text-decoration: underline;
-        }
+        button[type="submit"]:disabled { opacity: 0.7; cursor: not-allowed; }
+        .login-link { text-align: center; margin-top: 20px; font-size: 14px; }
+        .login-link a { color: var(--primary-green); text-decoration: none; font-weight: bold; }
+        #responseMessage { text-align: center; margin-top: 15px; font-size: 14px; font-weight: bold; }
+        .text-success { color: var(--primary-green); }
+        .text-danger { color: var(--error-red); }
     </style>
 </head>
 <body>
@@ -207,13 +70,11 @@
             <p>Create your account to book and manage appointments</p>
         </div>
 
-        <form id="signupForm" action="/submit-registration" method="POST">
-            
+        <form id="signupForm">
             <div class="form-group">
                 <label for="fullName">Full Name</label>
                 <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
             </div>
-
             <div class="form-row">
                 <div class="form-group">
                     <label for="dob">Date of Birth</label>
@@ -224,7 +85,6 @@
                     <input type="number" id="age" name="age" placeholder="Auto-calculated" readonly required>
                 </div>
             </div>
-
             <div class="form-row">
                 <div class="form-group">
                     <label for="gender">Gender</label>
@@ -239,28 +99,21 @@
                     <label for="bloodGroup">Blood Group</label>
                     <select id="bloodGroup" name="bloodGroup">
                         <option value="" disabled selected>Select</option>
-                        <option value="A+">A+</option>
-                        <option value="A-">A-</option>
-                        <option value="B+">B+</option>
-                        <option value="B-">B-</option>
-                        <option value="AB+">AB+</option>
-                        <option value="AB-">AB-</option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
+                        <option value="A+">A+</option><option value="A-">A-</option>
+                        <option value="B+">B+</option><option value="B-">B-</option>
+                        <option value="AB+">AB+</option><option value="AB-">AB-</option>
+                        <option value="O+">O+</option><option value="O-">O-</option>
                     </select>
                 </div>
             </div>
-
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter your 10-digit phone number" pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number without spaces or dashes." required>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your 10-digit phone number" pattern="[0-9]{10}" required>
             </div>
-
             <div class="form-group">
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
             </div>
-
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="password-container">
@@ -268,34 +121,29 @@
                     <button type="button" class="toggle-password" id="togglePasswordBtn">SHOW</button>
                 </div>
             </div>
-
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
                 <div class="error-message" id="passwordError">Passwords do not match!</div>
             </div>
-
             <div class="checkbox-group">
                 <input type="checkbox" id="terms" name="terms" required>
                 <label for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
             </div>
-
-            <button type="submit">Create Account</button>
-
+            <button type="submit" id="submitBtn">Create Account</button>
         </form>
 
+        <div id="responseMessage"></div>
+
         <div class="login-link">
-            Already have an account? <a href="/login.html">Log in here</a>
+            Already have an account? <a href="login.php">Log in here</a>
         </div>
     </div>
 
-    <!-- JavaScript for Interactivity -->
     <script>
-        // 1. Auto-calculate Age based on Date of Birth
+        // Age calculation
         const dobInput = document.getElementById('dob');
         const ageInput = document.getElementById('age');
-
-        // Prevent future dates in the DOB calendar
         const todayFormatted = new Date().toISOString().split('T')[0];
         dobInput.setAttribute('max', todayFormatted);
 
@@ -305,54 +153,62 @@
                 const today = new Date();
                 let age = today.getFullYear() - dob.getFullYear();
                 const m = today.getMonth() - dob.getMonth();
-                
-                if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
-                    age--;
-                }
-                
+                if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) { age--; }
                 ageInput.value = age >= 0 ? age : 0;
-            } else {
-                ageInput.value = '';
             }
         });
 
-        // 2. Show/Hide Password Toggle
-        const togglePasswordBtn = document.getElementById('togglePasswordBtn');
-        const passwordInput = document.getElementById('password');
-
-        togglePasswordBtn.addEventListener('click', function() {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
+        // Toggle password
+        document.getElementById('togglePasswordBtn').addEventListener('click', function() {
+            const pwd = document.getElementById('password');
+            const type = pwd.getAttribute('type') === 'password' ? 'text' : 'password';
+            pwd.setAttribute('type', type);
             this.textContent = type === 'password' ? 'SHOW' : 'HIDE';
         });
 
-        // 3. Form Submit Logic (Password match & Loading state)
+        // Real-time API Submission
         const form = document.getElementById('signupForm');
-        const confirmPassword = document.getElementById('confirmPassword');
-        const passwordError = document.getElementById('passwordError');
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault(); 
+            
+            const pwd = document.getElementById('password').value;
+            const confirmPwd = document.getElementById('confirmPassword').value;
+            const errorDiv = document.getElementById('passwordError');
+            const responseDiv = document.getElementById('responseMessage');
+            const btn = document.getElementById('submitBtn');
 
-        form.addEventListener('submit', function(event) {
-            // Check if passwords match
-            if (passwordInput.value !== confirmPassword.value) {
-                event.preventDefault(); // Stop form submission
-                passwordError.style.display = 'block';
-                confirmPassword.style.borderColor = 'var(--error-red)';
-                return; // Exit function so loading state doesn't trigger
+            if (pwd !== confirmPwd) {
+                errorDiv.style.display = 'block';
+                return;
             }
+            errorDiv.style.display = 'none';
 
-            // Passwords match! Trigger Loading State
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.disabled = true; // This automatically triggers your CSS opacity!
-            submitBtn.style.cursor = 'not-allowed';
-            submitBtn.innerText = 'Creating Account... Please wait';
-        });
+            btn.disabled = true;
+            btn.innerText = 'Creating Account...';
+            responseDiv.innerHTML = '';
 
-        // Remove error message if the user starts typing in the confirm box again
-        confirmPassword.addEventListener('input', function() {
-            passwordError.style.display = 'none';
-            this.style.borderColor = '#ddd';
+            try {
+                const formData = new FormData(form);
+                const response = await fetch('api.php?action=signup', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    responseDiv.innerHTML = `<span class="text-success">${result.message}</span>`;
+                    setTimeout(() => window.location.href = 'login.php', 2000);
+                } else {
+                    responseDiv.innerHTML = `<span class="text-danger">${result.message}</span>`;
+                    btn.disabled = false;
+                    btn.innerText = 'Create Account';
+                }
+            } catch (error) {
+                responseDiv.innerHTML = `<span class="text-danger">A network error occurred.</span>`;
+                btn.disabled = false;
+                btn.innerText = 'Create Account';
+            }
         });
     </script>
-
 </body>
 </html>
