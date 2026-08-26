@@ -3,295 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - MedBook</title>
-    <style>
-        /* Color Palette: White and Light Green */
-        :root {
-            --primary-green: #81c784; 
-            --light-green-bg: #e8f5e9; 
-            --text-dark: #333333;
-            --white: #ffffff;
-            --error-red: #d32f2f;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-green-bg);
-            color: var(--text-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .signup-container {
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            width: 100%;
-            max-width: 500px;
-            border-top: 5px solid var(--primary-green);
-        }
-
-        .signup-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .signup-header h2 {
-            margin: 0;
-            color: var(--primary-green);
-            font-size: 28px;
-        }
-
-        .signup-header p {
-            color: #666;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 15px;
-        }
-
-        .form-row .form-group {
-            flex: 1;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        input[type="date"],
-        input[type="tel"],
-        input[type="email"],
-        input[type="password"],
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 14px;
-            transition: border-color 0.3s ease;
-        }
-
-        input:focus,
-        select:focus {
-            outline: none;
-            border-color: var(--primary-green);
-            box-shadow: 0 0 0 2px rgba(129, 199, 132, 0.2);
-        }
-
-        /* Password Toggle Styling */
-        .password-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        
-        .password-container input {
-            padding-right: 60px; /* Gives space so text doesn't hide behind the button */
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 12px;
-            background: none;
-            border: none;
-            color: var(--primary-green);
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 12px;
-            padding: 0;
-        }
-
-        .toggle-password:hover {
-            color: #66bb6a;
-        }
-
-        /* Checkbox styling */
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            accent-color: var(--primary-green);
-        }
-
-        .checkbox-group label {
-            margin-bottom: 0;
-            font-weight: normal;
-        }
-
-        .checkbox-group a {
-            color: var(--primary-green);
-            text-decoration: none;
-        }
-
-        .checkbox-group a:hover {
-            text-decoration: underline;
-        }
-
-        /* Error message styling */
-        .error-message {
-            color: var(--error-red);
-            font-size: 12px;
-            margin-top: 5px;
-            display: none;
-        }
-
-        button[type="submit"] {
-            width: 100%;
-            padding: 14px;
-            background-color: var(--primary-green);
-            color: var(--white);
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
-        }
-
-        button[type="submit"]:hover:not(:disabled) {
-            background-color: #66bb6a;
-        }
-        
-        button[type="submit"]:disabled {
-            opacity: 0.7;
-        }
-
-        .login-link {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-
-        .login-link a {
-            color: var(--primary-green);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .login-link a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>Sign Up - Vedji Health Partner</title>
+    <!-- We use the dedicated auth-style.css to ensure index.html remains unaffected -->
+    <link rel="stylesheet" href="auth-style.css">
 </head>
-<body>
+<body class="auth-body">
 
-    <div class="signup-container">
-        <div class="signup-header">
-            <h2>Sign Up</h2>
-            <p>Create your account to book and manage appointments</p>
-        </div>
-
-        <form id="signupForm" action="/submit-registration" method="POST">
+    <div class="auth-wrapper">
+        
+        <aside class="auth-sidebar">
+            <div class="auth-slideshow">
+                <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1000" alt="Health" class="auth-slide">
+                <img src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?auto=format&fit=crop&q=80&w=1000" alt="Clinic" class="auth-slide">
+                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1000" alt="Doctor" class="auth-slide">
+            </div>
             
-            <div class="form-group">
-                <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+            <div class="auth-sidebar-content">
+                <h2>Join Vedji Today</h2>
+                <p>Create an account to easily find verified specialists, book appointments without waiting, and take control of your health journey.</p>
             </div>
+        </aside>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="dob">Date of Birth</label>
-                    <input type="date" id="dob" name="dob" required>
+        <main class="auth-main">
+            <div class="auth-form-container">
+                <a href="index.html" class="auth-logo">Vedji.</a>
+                
+                <div class="auth-header">
+                    <h1>Create an Account</h1>
+                    <p>Start your journey to better healthcare today.</p>
                 </div>
-                <div class="form-group">
-                    <label for="age">Age</label>
-                    <input type="number" id="age" name="age" placeholder="Auto-calculated" readonly required>
+
+                <form id="signupForm" onsubmit="handleSignup(event)">
+                    
+                    <div class="auth-input-group">
+                        <input type="text" id="fullName" name="fullName" class="auth-input" placeholder=" " required>
+                        <label for="fullName" class="auth-label">Full Name</label>
+                    </div>
+
+                    <!-- Row for DOB and Auto-Calculated Age -->
+                    <div class="auth-input-group row">
+                        <div>
+                            <!-- Type set to text initially for placeholder, switches to date on focus -->
+                            <input type="text" id="dob" name="dob" class="auth-input" placeholder=" " onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" required>
+                            <label for="dob" class="auth-label">Date of Birth</label>
+                        </div>
+                        <div>
+                            <input type="number" id="age" name="age" class="auth-input" placeholder=" " readonly required>
+                            <label for="age" class="auth-label">Age (Auto)</label>
+                        </div>
+                    </div>
+
+                    <!-- Row for Gender and Blood Group -->
+                    <div class="auth-input-group row">
+                        <div>
+                            <select id="gender" name="gender" class="auth-input" required>
+                                <option value="" disabled selected hidden></option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <!-- Fake placeholder hack for select to trigger floating label -->
+                            <label for="gender" class="auth-label" style="top: 14px; font-size: 0.75rem; color: var(--auth-primary); font-weight:600;">Gender</label>
+                        </div>
+                        <div>
+                            <select id="bloodGroup" name="bloodGroup" class="auth-input" required>
+                                <option value="" disabled selected hidden></option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                            <label for="bloodGroup" class="auth-label" style="top: 14px; font-size: 0.75rem; color: var(--auth-primary); font-weight:600;">Blood Group</label>
+                        </div>
+                    </div>
+
+                    <div class="auth-input-group">
+                        <input type="email" id="email" name="email" class="auth-input" placeholder=" " required>
+                        <label for="email" class="auth-label">Email Address</label>
+                    </div>
+
+                    <div class="auth-input-group row">
+                        <div>
+                            <input type="password" id="password" name="password" class="auth-input" placeholder=" " required>
+                            <label for="password" class="auth-label">Password</label>
+                        </div>
+                        <div>
+                            <input type="password" id="confirmPassword" name="confirmPassword" class="auth-input" placeholder=" " required>
+                            <label for="confirmPassword" class="auth-label">Confirm Password</label>
+                            <div class="auth-error-text" id="passwordError">Passwords do not match</div>
+                        </div>
+                    </div>
+
+                    <div class="auth-checkbox-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the <a href="#">Terms of Service</a> & <a href="#">Privacy Policy</a>.</label>
+                    </div>
+
+                    <button type="submit" id="signupBtn" class="auth-btn">Create Account</button>
+                </form>
+
+                <div class="auth-links" style="justify-content: center; margin-top: 25px;">
+                    <span>Already have an account? <a href="login.html">Log in here</a></span>
                 </div>
             </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <select id="gender" name="gender" required>
-                        <option value="" disabled selected>Select</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="bloodGroup">Blood Group</label>
-                    <select id="bloodGroup" name="bloodGroup">
-                        <option value="" disabled selected>Select</option>
-                        <option value="A+">A+</option>
-                        <option value="A-">A-</option>
-                        <option value="B+">B+</option>
-                        <option value="B-">B-</option>
-                        <option value="AB+">AB+</option>
-                        <option value="AB-">AB-</option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter your 10-digit phone number" pattern="[0-9]{10}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <div class="password-container">
-                    <input type="password" id="password" name="password" placeholder="Create a strong password" required>
-                    <button type="button" class="toggle-password" id="togglePasswordBtn">SHOW</button>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
-                <div class="error-message" id="passwordError">Passwords do not match!</div>
-            </div>
-
-            <div class="checkbox-group">
-                <input type="checkbox" id="terms" name="terms" required>
-                <label for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
-            </div>
-
-            <button type="submit">Create Account</button>
-
-        </form>
-
-        <div class="login-link">
-            Already have an account? <a href="/login.html">Log in here</a>
-        </div>
+        </main>
     </div>
 
-    <!-- JavaScript for Interactivity -->
     <script>
-        // 1. Auto-calculate Age based on Date of Birth
+        // Auto-calculate Age based on Date of Birth
         const dobInput = document.getElementById('dob');
         const ageInput = document.getElementById('age');
 
@@ -302,52 +125,49 @@
                 let age = today.getFullYear() - dob.getFullYear();
                 const m = today.getMonth() - dob.getMonth();
                 
+                // Adjust if birthday hasn't happened yet this year
                 if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
                     age--;
                 }
                 
                 ageInput.value = age >= 0 ? age : 0;
+                // Trigger an event so the floating label logic knows it has content
+                ageInput.dispatchEvent(new Event('input'));
             } else {
                 ageInput.value = '';
             }
         });
 
-        // 2. Show/Hide Password Toggle
-        const togglePasswordBtn = document.getElementById('togglePasswordBtn');
-        const passwordInput = document.getElementById('password');
+        // Validate Passwords and simulate loading on Submit
+        function handleSignup(event) {
+            event.preventDefault();
+            
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+            const passwordError = document.getElementById('passwordError');
+            const btn = document.getElementById('signupBtn');
 
-        togglePasswordBtn.addEventListener('click', function() {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            this.textContent = type === 'password' ? 'SHOW' : 'HIDE';
-        });
-
-        // 3. Form Submit Logic (Password match & Loading state)
-        const form = document.getElementById('signupForm');
-        const confirmPassword = document.getElementById('confirmPassword');
-        const passwordError = document.getElementById('passwordError');
-
-        form.addEventListener('submit', function(event) {
-            // Check if passwords match
-            if (passwordInput.value !== confirmPassword.value) {
-                event.preventDefault(); // Stop form submission
+            if (password.value !== confirmPassword.value) {
                 passwordError.style.display = 'block';
-                confirmPassword.style.borderColor = 'var(--error-red)';
-                return; // Exit function so loading state doesn't trigger
+                confirmPassword.style.borderColor = 'var(--auth-error)';
+            } else {
+                passwordError.style.display = 'none';
+                confirmPassword.style.borderColor = 'var(--auth-border)';
+                
+                // Simulate loading state
+                btn.innerText = 'Creating Account...';
+                btn.style.opacity = '0.8';
+                
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1500);
             }
+        }
 
-            // Passwords match! Trigger Loading State
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-            submitBtn.style.backgroundColor = '#ccc';
-            submitBtn.style.cursor = 'not-allowed';
-            submitBtn.innerText = 'Creating Account... Please wait';
-        });
-
-        // Remove error message if the user starts typing in the confirm box again
-        confirmPassword.addEventListener('input', function() {
-            passwordError.style.display = 'none';
-            this.style.borderColor = '#ddd';
+        // Remove error outline while typing
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            document.getElementById('passwordError').style.display = 'none';
+            this.style.borderColor = 'var(--auth-primary)';
         });
     </script>
 
