@@ -97,6 +97,33 @@
             box-shadow: 0 0 0 2px rgba(129, 199, 132, 0.2);
         }
 
+        /* Password Toggle Styling */
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .password-container input {
+            padding-right: 60px; /* Gives space so text doesn't hide behind the button */
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            background: none;
+            border: none;
+            color: var(--primary-green);
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 0;
+        }
+
+        .toggle-password:hover {
+            color: #66bb6a;
+        }
+
         /* Checkbox styling */
         .checkbox-group {
             display: flex;
@@ -130,7 +157,7 @@
             color: var(--error-red);
             font-size: 12px;
             margin-top: 5px;
-            display: none; /* Hidden by default */
+            display: none;
         }
 
         button[type="submit"] {
@@ -147,8 +174,12 @@
             margin-top: 10px;
         }
 
-        button[type="submit"]:hover {
+        button[type="submit"]:hover:not(:disabled) {
             background-color: #66bb6a;
+        }
+        
+        button[type="submit"]:disabled {
+            opacity: 0.7;
         }
 
         .login-link {
@@ -169,15 +200,6 @@
     </style>
 </head>
 <body>
-    <header class="navbar">
-        <a href="#" class="logo">Vedji</a>
-        <nav class="nav-links">
-            <a href="#">Home</a>
-            <a href="#specialties">Doctors</a>
-            <a href="#benefits">Benefits</a>
-            <a href="#contact">Contact Us</a>
-        </nav>
-    </header>
 
     <div class="signup-container">
         <div class="signup-header">
@@ -186,13 +208,12 @@
         </div>
 
         <form id="signupForm" action="/submit-registration" method="POST">
-            <!-- Name -->
+            
             <div class="form-group">
                 <label for="fullName">Full Name</label>
                 <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
             </div>
 
-            <!-- DOB and Age Row -->
             <div class="form-row">
                 <div class="form-group">
                     <label for="dob">Date of Birth</label>
@@ -200,12 +221,10 @@
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
-                    <!-- Made read-only since JS will calculate it -->
                     <input type="number" id="age" name="age" placeholder="Auto-calculated" readonly required>
                 </div>
             </div>
 
-            <!-- Gender and Blood Group Row -->
             <div class="form-row">
                 <div class="form-group">
                     <label for="gender">Gender</label>
@@ -232,7 +251,6 @@
                 </div>
             </div>
 
-            <!-- Contact Info -->
             <div class="form-group">
                 <label for="phone">Phone Number</label>
                 <input type="tel" id="phone" name="phone" placeholder="Enter your 10-digit phone number" pattern="[0-9]{10}" required>
@@ -243,10 +261,12 @@
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
             </div>
 
-            <!-- Passwords -->
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+                    <button type="button" class="toggle-password" id="togglePasswordBtn">SHOW</button>
+                </div>
             </div>
 
             <div class="form-group">
@@ -254,13 +274,12 @@
                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
                 <div class="error-message" id="passwordError">Passwords do not match!</div>
             </div>
-            <!-- Terms and Conditions -->
+
             <div class="checkbox-group">
                 <input type="checkbox" id="terms" name="terms" required>
                 <label for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
             </div>
 
-            <!-- Submit -->
             <button type="submit">Create Account</button>
 
         </form>
@@ -283,43 +302,52 @@
                 let age = today.getFullYear() - dob.getFullYear();
                 const m = today.getMonth() - dob.getMonth();
                 
-                // Subtract a year if the birthday hasn't happened yet this year
                 if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
                     age--;
                 }
                 
-                // Ensure age is not negative
                 ageInput.value = age >= 0 ? age : 0;
             } else {
                 ageInput.value = '';
             }
         });
 
-        // 2. Validate Passwords Match on Form Submit
+        // 2. Show/Hide Password Toggle
+        const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+        const passwordInput = document.getElementById('password');
+
+        togglePasswordBtn.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.textContent = type === 'password' ? 'SHOW' : 'HIDE';
+        });
+
+        // 3. Form Submit Logic (Password match & Loading state)
         const form = document.getElementById('signupForm');
-        const password = document.getElementById('password');
         const confirmPassword = document.getElementById('confirmPassword');
         const passwordError = document.getElementById('passwordError');
 
         form.addEventListener('submit', function(event) {
-            if (password.value !== confirmPassword.value) {
-                // Prevent the form from submitting
-                event.preventDefault(); 
-                
-                // Show error state
+            // Check if passwords match
+            if (passwordInput.value !== confirmPassword.value) {
+                event.preventDefault(); // Stop form submission
                 passwordError.style.display = 'block';
                 confirmPassword.style.borderColor = 'var(--error-red)';
-            } else {
-                // Remove error state if they fixed it
-                passwordError.style.display = 'none';
-                confirmPassword.style.borderColor = '#ddd';
+                return; // Exit function so loading state doesn't trigger
             }
+
+            // Passwords match! Trigger Loading State
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.style.backgroundColor = '#ccc';
+            submitBtn.style.cursor = 'not-allowed';
+            submitBtn.innerText = 'Creating Account... Please wait';
         });
 
-        // Optional: Remove error message as soon as the user starts typing again
+        // Remove error message if the user starts typing in the confirm box again
         confirmPassword.addEventListener('input', function() {
             passwordError.style.display = 'none';
-            this.style.borderColor = 'var(--primary-green)';
+            this.style.borderColor = '#ddd';
         });
     </script>
 
